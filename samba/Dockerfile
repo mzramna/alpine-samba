@@ -12,5 +12,7 @@ RUN apk add --update \
 
 EXPOSE 445/tcp
 
+HEALTHCHECK --interval=60s --timeout=15s CMD smbclient -L \\localhost -U % -m SMB3
+
 ENTRYPOINT ["smbd", "--foreground", "--log-stdout","--no-process-group"]
 CMD []
